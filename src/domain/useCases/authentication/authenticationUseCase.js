@@ -20,6 +20,7 @@ class AuthenticationUseCase {
       if (!usuario) {
         return null;
       }
+      return null;
     } catch (error) {
         throw error;
     }

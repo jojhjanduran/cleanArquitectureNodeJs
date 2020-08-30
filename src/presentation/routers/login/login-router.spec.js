@@ -8,7 +8,7 @@ describe("Login Router", () => {
     const httpRequest = {
       body: {
         clave: "clave_valida",
-      },
+      }
     };
     const httpResponse = await loginRouterInstance.login(httpRequest);
     expect(httpResponse.statusCode).toBe(400);

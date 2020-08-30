@@ -12,13 +12,13 @@ class LoginRouter{
         try{
             const { correo, clave , getHash } = httpRequest.body;
             if(!correo){
-                return HttpResponse.badRequest(new Error(`No se encontro parametro correo`));
+                return HttpResponse.badRequest(new Error(`La propiedad correo debe ser obligatoria`));
             }
             if(!clave){
-                return HttpResponse.badRequest(new Error(`No se encontro parametro clave`));
+                return HttpResponse.badRequest(new Error(`La propiedad clave debe ser obligatoria`));
             }
             if(!getHash){
-                return HttpResponse.badRequest(new Error(`No se encontro parametro getHash`));
+                return HttpResponse.badRequest(new Error(`La propiedad getHash debe ser obligatoria`));
             }
             const accessToken = await this.authUseCase.authentication(correo,clave,getHash);
             if(!accessToken){

@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "jest --colors --noStackTrace --passWithNoTests --runInBand",
+    "test:unit": "npm test -- --watch -c jest-unit-config.js",
+    "test:staged": "npm test -- --findRelatedTests --silent",
+    "test:ci": "npm test -- --coverage --silent"
   },
   "repository": {
     "type": "git",
@@ -15,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/jojhjanduran/cleanArquitectureNodeJs/issues"
   },
-  "homepage": "https://github.com/jojhjanduran/cleanArquitectureNodeJs#readme"
+  "homepage": "https://github.com/jojhjanduran/cleanArquitectureNodeJs#readme",
+  "devDependencies": {
+    "husky": "^4.2.5",
+    "jest": "^26.4.2",
+    "lint-staged": "^10.2.13"
+  }
 }

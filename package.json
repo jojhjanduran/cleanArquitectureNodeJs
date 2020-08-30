@@ -1,0 +1,19 @@
+{
+  "name": "cleanarquitecturenodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jojhjanduran/cleanArquitectureNodeJs.git"
+  },
+  "author": "Johan Duran",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jojhjanduran/cleanArquitectureNodeJs/issues"
+  },
+  "homepage": "https://github.com/jojhjanduran/cleanArquitectureNodeJs#readme"
+}

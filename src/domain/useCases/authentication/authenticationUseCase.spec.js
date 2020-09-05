@@ -1,8 +1,10 @@
 "use strict";
-//const AuthenticationUseCase = require('./authenticationUseCase');
 const {
   getAuthenticationUseCaseInstance,
+  getUserRepository,
+  getEncrypter,
 } = require("./authenticactionUseCaseTest");
+const AuthenticationUseCase = require("./authenticationUseCase");
 
 describe("AuthenticationUseCase", () => {
   test("Deberia arrojar excepción si el parametro correo no se envia ", async () => {
@@ -99,5 +101,34 @@ describe("AuthenticationUseCase", () => {
     );
     tokenGeneratorTest.token = null;
     expect(tokenGeneratorTest.token).toBeNull();
+  });
+  test('Deberia retornar error si no se envian las inyecciones correspondientes', () => {
+    const invalid = {};
+    const userRepositoryTest = getUserRepository();
+    const encrypterTest = getEncrypter();
+    const instances = [].concat(
+      new AuthenticationUseCase(),
+      new AuthenticationUseCase({}),
+      new AuthenticationUseCase({
+        userRepository: invalid,
+      }),
+      new AuthenticationUseCase({
+        userRepository: userRepositoryTest,
+        encrypter: invalid
+      }),
+      new AuthenticationUseCase({
+        userRepository: userRepositoryTest,
+        encrypter: encrypterTest,
+        tokenGenerator: invalid
+      }),
+    );
+    for (const instance of instances) {
+      const promise = instance.authentication(
+        "ejemplo@ejemplo.com",
+        "clave_valida",
+        true
+      );
+       expect(promise).rejects.toThrow();
+    }
   });
 });

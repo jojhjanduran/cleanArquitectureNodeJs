@@ -89,7 +89,6 @@ describe("Login Router", () => {
   });
   test("Deberia retornar 500 si las no se tienen las dependencias inyectadas correctamente ", async () => {
     const invalid = {};
-    const authUseCase = getAuthUseCase();
     const instances = [].concat(
       new LoginRouter(),
       new LoginRouter({}),

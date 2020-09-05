@@ -1,8 +1,10 @@
 "use strict";
 
 class AuthenticationUseCase {
-  constructor({ userRepository } = {}) {
+  constructor({ userRepository,encrypter,tokenGenerator } = {}) {
     this.userRepository = userRepository;
+    this.encrypter = encrypter;
+    this.tokenGenerator = tokenGenerator
   }
 
   async authentication(correo, clave, getHash) {
@@ -20,7 +22,12 @@ class AuthenticationUseCase {
       if (!usuario) {
         return null;
       }
-      return null;
+      const isValid = await this.encrypter.compare(clave,usuario.clave);
+      if(!isValid){
+        return null;
+      }
+      const accessToken = await this.tokenGenerator.generate(usuario.id);
+      return accessToken;
     } catch (error) {
         throw error;
     }

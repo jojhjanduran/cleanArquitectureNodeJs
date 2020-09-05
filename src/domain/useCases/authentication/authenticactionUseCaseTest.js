@@ -2,12 +2,14 @@
 const AuthenticationUseCase = require("./authenticationUseCase");
 
 const getAuthenticationUseCaseInstance = () => {
-  const userRepositoryTest = getUserByEmailRepository();
-  const authenticationUseCaseInstance = new AuthenticationUseCase({ userRepository: userRepositoryTest });
-  return { authenticationUseCaseInstance, userRepositoryTest};
+  const userRepositoryTest = getUserRepository();
+  const encrypterTest = getEncrypter();
+  const tokenGeneratorTest = getTokenGenerator();
+  const authenticationUseCaseInstance = new AuthenticationUseCase({ userRepository: userRepositoryTest, encrypter: encrypterTest,tokenGenerator: tokenGeneratorTest });
+  return { authenticationUseCaseInstance, userRepositoryTest, encrypterTest, tokenGeneratorTest};
 };
 
-const getUserByEmailRepository = () => {
+const getUserRepository = () => {
   class UserRepository {
     async getUserByEmail(correo) {
       this.correo = correo;
@@ -24,7 +26,34 @@ const getUserByEmailRepository = () => {
   return userRepository;
 };
 
+const getEncrypter = ()=>{
+  class EncrypterTest{
+    async compare(clave,hash){
+      this.clave = clave;
+      this.hash = hash;
+      return this.isValid;
+    }
+  }
+  const encrypterTest = new EncrypterTest();
+  encrypterTest.isValid = true;
+  return encrypterTest;
+}
+
+const getTokenGenerator = ()=>{
+  class TokenGeneratorTest{
+    async generate(idUser){
+      this.idUser = idUser;
+      return this.token;
+    }
+  }
+  const tokenGeneratorTest = new TokenGeneratorTest();
+  tokenGeneratorTest.token = 'any_token';
+  return tokenGeneratorTest;
+}
+
 module.exports = {
   getAuthenticationUseCaseInstance,
-  getUserByEmailRepository,
+  getUserRepository,
+  getEncrypter,
+  getTokenGenerator
 };

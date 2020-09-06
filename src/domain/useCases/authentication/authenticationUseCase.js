@@ -23,7 +23,7 @@ class AuthenticationUseCase {
       if(!isValid){
         return null;
       }
-      const accessToken = await this.tokenGenerator.generate(usuario.id);
+      const accessToken = await this.tokenGenerator.generate(usuario);
       return accessToken;
     } catch (error) {
         throw error;

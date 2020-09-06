@@ -11,4 +11,4 @@ class Encrypter{
         return isValid;
     }
 }
-module.exports = Encrypter;
+module.exports = Encrypter; 

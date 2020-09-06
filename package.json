@@ -25,6 +25,7 @@
     "lint-staged": "^10.2.13"
   },
   "dependencies": {
-    "bcrypt": "^5.0.0"
+    "bcrypt": "^5.0.0",
+    "jwt-simple": "^0.5.6"
   }
 }

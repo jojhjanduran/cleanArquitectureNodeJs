@@ -19,10 +19,7 @@ class AuthenticationUseCase {
         throw new Error("La propiedad getHash debe ser obligatoria");
       }
       const usuario = await this.userRepository.getUserByEmail(correo);
-      if (!usuario) {
-        return null;
-      }
-      const isValid = await this.encrypter.compare(clave,usuario.clave);
+      const isValid = usuario && await this.encrypter.compare(clave,usuario.clave);
       if(!isValid){
         return null;
       }

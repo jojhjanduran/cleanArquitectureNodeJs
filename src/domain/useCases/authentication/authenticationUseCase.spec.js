@@ -64,7 +64,7 @@ describe("AuthenticationUseCase", () => {
     );
     expect(encrypterTest.isValid).toBe(true);
   });
-  test("Deberia retornar null si los parametros no son correctos", async () => {
+  test("Deberia retornar null si en el encripyterTest los parametros son incorrectos", async () => {
     const {
       authenticationUseCaseInstance,
       encrypterTest
